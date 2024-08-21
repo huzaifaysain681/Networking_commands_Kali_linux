@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Networking Commands - Kali Linux</title>
+    <style>
+        /* Import Google Font */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #1f4037, #99f2c8);
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .particle-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(0,0,0,0.3) 1px, transparent 1px),
+                        radial-gradient(circle, rgba(0,0,0,0.1) 1px, transparent 1px);
+            background-size: 5px 5px, 100px 100px, 200px 200px;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .container {
+            width: 85%;
+            margin: auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #fff;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            animation: fadeInTitle 2s ease-in-out;
+            transition: transform 0.3s ease;
+        }
+
+        .animated-title:hover {
+            transform: scale(1.1);
+            text-shadow: 0px 0px 10px #fff;
+        }
+
+        .commands-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .command-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .command-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, #ff6b6b, #f94c66);
+            color: #fff;
+        }
+
+        .command-card::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 1;
+        }
+
+        .command-card:hover::before {
+            opacity: 1;
+        }
+
+        .icon {
+            font-size: 3rem;
+            color: #ff9a9e;
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin: 10px 0;
+        }
+
+        p {
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        code {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: inline-block;
+            color: #ffeb3b;
+        }
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 150px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 5px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -75px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        @keyframes backgroundAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes fadeInTitle {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="particle-background"></div>
+    <div class="container">
+        <h1 class="animated-title">Networking Commands - Kali Linux</h1>
+        <div class="commands-grid">
+            <div class="command-card tooltip">
+                <div class="icon"><i class="fas fa-network-wired"></i></div>
+                <h2>ifconfig</h2>
+                <p>Displays or configures a network interface.</p>
+                <code>ifconfig eth0</code>
+                <span class="tooltiptext">Displays network interfaces.</span>
+            </div>
+            <div class="command-card tooltip">
+                <div class="icon"><i class="fas fa-server"></i></div>
+                <h2>ip</h2>
+                <p>Manages network interfaces and routes.</p>
+                <code>ip addr show</code>
+                <span class="tooltiptext">Shows IP addresses and routes.</span>
+            </div>
+            <div class="command-card tooltip">
+                <div class="icon"><i class="fas fa-ping-pong"></i></div>
+                <h2>ping</h2>
+                <p>Tests connectivity to a remote host.</p>
+                <code>ping google.com</code>
+                <span class="tooltiptext">Checks network connectivity.</span>
+            </div>
+            <div class="command-card tooltip">
+                <div class="icon"><i class="fas fa-chart-line"></i></div>
+                <h2>netstat</h2>
+                <p>Displays network connections and statistics.</p>
+                <code>netstat -tuln</code>
+                <span class="tooltiptext">Shows network connections.</span>
+            </div>
+            <div class="command-card tooltip">
+                <div class="icon"><i class="fas fa-route"></i></div>
+                <h2>traceroute</h2>
+                <p>Shows the path packets take to a network host.</p>
+                <code>traceroute google.com</code>
+                <span class="tooltiptext">Traces network route.</span>
+            </div>
+            <div class="command-card tooltip">
+                <div class="icon"><i class="fas fa-globe"></i></div>
+                <h2>nslookup</h2>
+                <p>Queries DNS to find out domain-related information.</p>
+                <code>nslookup google.com</code>
+                <span class="tooltiptext">DNS query tool.</span>
+            </div>
+            <div class="command-card tooltip">
+                <div class="icon"><i class="fas fa-database"></i></div>
+                <h2>dig</h2>
+                <p>Another tool to query DNS information.</p>
+                <code>dig google.com</code>
+                <span class="tooltiptext">Another DNS query tool.</span>
+            </div>
+            <div class="command-card tooltip">
+                <div class="icon"><i class="fas fa-network-wired"></i></div>
+                <h2>route</h2>
+                <p>Displays or modifies the IP routing table.</p>
+                <code>route -n</code>
+                <span class="tooltiptext">Shows IP routing table.</span>
+            </div>
+            <div class="command-card tooltip">
+                <div class="icon"><i class="fas fa-search"></i></div>
+                <h2>nmap</h2>
+                <p>Network scanner used to discover hosts and services.</p>
+                <code>nmap -sP 192.168.1.0/24</code>
+                <span class="tooltiptext">Network scanning tool.</span>
+            </div>
+            <div class="command-card tooltip">
+                <div class="icon"><i class="fas fa-stream"></i></div>
+                <h2>tcpdump</h2>
+                <p>Captures network packets for analysis.</p>
+                <code>tcpdump -i eth0</code>
+                <span class="tooltiptext">Network packet analyzer.</span>
+            </div>
+            <div class="command-card tooltip">
+                <div class="icon"><i class="fas fa-shield-alt"></i></div>
+                <h2>iptables</h2>
+                <p>Configures the Linux kernel firewall.</p>
+                <code>iptables -L</code>
+                <span class="tooltiptext">Configures firewall rules.</span>
+            </div>
+            <div class="command-card tooltip">
+                <div class="icon"><i class="fas fa-wifi"></i></div>
+                <h2>iwconfig</h2>
+                <p>Displays or configures wireless network interfaces.</p>
+                <code>iwconfig wlan0</code>
+                <span class="tooltiptext">Configures wireless interfaces.</span>
+            </div>
+            <div class="command-card tooltip">
+                <div class="icon"><i class="fas fa-tasks"></i></div>
+                <h2>nmcli</h2>
+                <p>Manages NetworkManager via command line.</p>
+                <code>nmcli dev status</code>
+                <span class="tooltiptext">NetworkManager CLI tool.</span>
+            </div>
+            <div class="command-card tooltip">
+                <div class="icon"><i class="fas fa-desktop"></i></div>
+                <h2>hostname</h2>
+                <p>Displays or sets the system's hostname.</p>
+                <code>hostname -I</code>
+                <span class="tooltiptext">Shows system hostname.</span>
+            </div>
+            <div class="command-card tooltip">
+                <div class="icon"><i class="fas fa-info-circle"></i></div>
+                <h2>whois</h2>
+                <p>Retrieves information about a domain.</p>
+                <code>whois google.com</code>
+                <span class="tooltiptext">Domain information tool.</span>
+            </div>
+            <div class="command-card tooltip">
+                <div class="icon"><i class="fas fa-download"></i></div>
+                <h2>wget</h2>
+                <p>Downloads files from the web.</p>
+                <code>wget http://example.com/file.zip</code>
+                <span class="tooltiptext">File downloader.</span>
+            </div>
+            <div class="command-card tooltip">
+                <div class="icon"><i class="fas fa-exchange-alt"></i></div>
+                <h2>curl</h2>
+                <p>Transfers data from or to a server.</p>
+                <code>curl http://example.com</code>
+                <span class="tooltiptext">Data transfer tool.</span>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+</body>
+</html>
